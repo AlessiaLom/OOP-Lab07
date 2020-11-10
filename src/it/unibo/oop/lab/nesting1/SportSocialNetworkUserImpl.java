@@ -27,40 +27,31 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
     /**
      * Static {@link Sport} constant.
      */
-    public static final Sport SOCCER;
+    public static final Sport SOCCER = new Sport("Football");
     /**
      * Static {@link Sport} constant.
      */
-    public static final Sport F1;
+    public static final Sport F1  = new Sport("Formula 1");;
     /**
      * Static {@link Sport} constant.
      */
-    public static final Sport MOTOGP;
+    public static final Sport MOTOGP = new Sport("MotoGP");;
     /**
      * Static {@link Sport} constant.
      */
-    public static final Sport VOLLEY;
+    public static final Sport VOLLEY = new Sport("Volleyball");;
     /**
      * Static {@link Sport} constant.
      */
-    public static final Sport BASKET;
+    public static final Sport BASKET = new Sport("Basketball");;
     /**
      * Static {@link Sport} constant.
      */
-    public static final Sport BIKE;
+    public static final Sport BIKE = new Sport("Bike");
 
     /*
-     * TODO: initialize properly these sports
+     * initialize properly these sports
      */
-    static {
-        SOCCER = null;
-        F1 = null;
-        MOTOGP = null;
-        VOLLEY = null;
-        BASKET = null;
-        BIKE = null;
-    }
-
     /**
      * Field meant to keep track of the set of sports followed/done by a user.
      */
@@ -112,8 +103,9 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * @param sport
      *            a sport followed/done by the user
      */
-    // TODO
+   
     public void addSport(final Sport sport) {
+    	this.sports.add(sport);
 
     }
 
@@ -124,27 +116,38 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      *            sport to use as an input
      * @return true if a user likes sport s
      */
-    // TODO
+    
     public boolean hasSport(final Sport s) {
-        return false;
+    	return this.sports.contains(s);
     }
 
-    /*
-     * TODO
-     * 
-     * Complete the definition of this static inner class defining a Sport along
-     * with its bare name.
-     */
+    
     public static final class Sport {
-        /*
-         * TODO
-         * 
-         * Redefine equals so that two sports are equal only if they feature the
-         * very same name. Remember that you must also redefine hashCode()!
-         */
+    	private final String name;
+    	
+    	public Sport(String name) {
+    		this.name=name;
+    	}
+    	
+     
         @Override
-        public boolean equals(final Object o) {
-            return false;
-        }
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((name == null) ? 0 : name.hashCode());
+			return result;
+		}
+
+		
+		public boolean equals(Object o) {
+			if (o == null) {
+                return false;
+            }
+			if(this.getClass().equals(o.getClass())) {
+				return this.name.equals(((Sport)o).name);
+			}
+			return false;
+		}
+        
     }
 }
