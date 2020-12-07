@@ -37,6 +37,14 @@ public enum Sport {
      * - soccer
      * 
      */
+    
+    BASKET(Place.INDOOR, 5, "basket"),
+    VOLLEY(Place.INDOOR, 6, "volley"),
+    TENNIS(Place.OUTDOOR, 1, "tennis"),
+    BIKE(Place.OUTDOOR, 1, "bike"),
+    F1(Place.OUTDOOR, 1, "Formula1"),
+    MOTOGP(Place.OUTDOOR, 1, "motoGP"),
+    SOCCER(Place.OUTDOOR, 11, "soccer");
 
     /*
      * TODO
@@ -45,40 +53,56 @@ public enum Sport {
      * 
      * Declare required fields
      */
-
+    private final int teamMembers;
+    private final String name;
+    private final Place place;
     /*
      * TODO
      * 
      * [CONSTRUCTOR]
      * 
      * Define a constructor like this:
-     * 
-     * - Sport(final Place place, final int noTeamMembers, final String actualName)
      */
+     Sport(final Place place, final int noTeamMembers, final String actualName){
+         this.teamMembers = noTeamMembers;
+         this.place=place;
+         this.name=actualName;
+     }
+     
 
     /*
      * TODO
      * 
      * [METHODS] To be defined
      * 
-     * 
-     * 1) public boolean isIndividualSport()
-     * 
+     */ 
+     public boolean isIndividualSport() {
+         return this.teamMembers==1;
+     }
+     /* 
      * Must return true only if called on individual sports
      * 
-     * 
-     * 2) public boolean isIndoorSport()
-     * 
+     */ 
+     public boolean isIndoorSport() {
+         return this.place.equals(Place.INDOOR);
+     }
+     /* 
      * Must return true in case the sport is practices indoor
      * 
-     * 
-     * 3) public Place getPlace()
-     * 
+     */ 
+     public Place getPlace() {
+         return this.place;
+     }
+     /* 
      * Must return the place where this sport is practiced
      * 
-     * 
-     * 4) public String toString()
-     * 
+     */ 
+     public String toString() {
+         return "SPORT: " + this.name + 
+                 "; Team Members: " + this.teamMembers + 
+                 "; Place: " + this.place;
+     }
+     /* 
      * Returns the string representation of a sport
      */
 }
